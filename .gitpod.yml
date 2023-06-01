@@ -1,5 +1,4 @@
-image:
-  file: .gitpod.Dockerfile
+image: hiimivantang/workspace-yugabytedb
 
 tasks:
   - name: YugabyteDB cluster
