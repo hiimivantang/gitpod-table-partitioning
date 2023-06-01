@@ -9,12 +9,14 @@ tasks:
     init: docker-compose pull
     command: |
       docker-compose up -d
+      sleep 5
       ysqlsh
 
   - name: psql
     before: brew install libpq && brew link --force libpq
     command: |
       docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data -d postgres
+      sleept 5
       psql postgresql://postgres:postgres@localhost
 
 
