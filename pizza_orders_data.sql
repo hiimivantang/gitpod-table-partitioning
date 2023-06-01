@@ -1,14 +1,3 @@
-CREATE TYPE status_t AS ENUM('ordered', 'baking', 'delivering', 'yummy-in-my-tummy');
-
-DROP TABLE IF EXISTS PizzaOrders; 
-
-CREATE TABLE PizzaOrders
- (
-   order_id   int PRIMARY KEY,
-   order_status   status_t,
-   order_time   timestamp
- );
-
 INSERT INTO PizzaOrders VALUES 
 (1, 'yummy-in-my-tummy', '2021-12-27 22:00:00'),
 (2, 'yummy-in-my-tummy', '2022-05-15 13:00:00'),
