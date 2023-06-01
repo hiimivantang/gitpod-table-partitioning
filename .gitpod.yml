@@ -1,6 +1,6 @@
 tasks:
   - name: YugabyteDB cluster
-    before: |
+    before: >
       git clone https://github.com/hiimivantang/yb-docker-composer && 
       cd  yb-docker-composer && 
       python yb-docker-composer.py
