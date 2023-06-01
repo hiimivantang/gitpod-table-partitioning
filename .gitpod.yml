@@ -1,5 +1,3 @@
-image: gitpod/workspace-yugabytedb
-
 tasks:
   - name: YugabyteDB cluster
     before: |
