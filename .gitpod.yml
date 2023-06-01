@@ -1,24 +1,21 @@
 image: hiimivantang/workspace-yugabytedb
 
 tasks:
-  - name: YugabyteDB cluster
+  - name: ysqlsh
     before: |
       git clone https://github.com/hiimivantang/yb-docker-composer 
       cd yb-docker-composer 
       python yb-docker-composer.py
     init: docker-compose pull
     command: |
-      docker-compose up
+      docker-compose up -d
+      ysqlsh
 
-  - name: Postgres
-    command: docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data postgres 
-
-  - name: ysqlsh
-    command: ysqlsh
-  
   - name: psql
     before: brew install libpq && brew link --force libpq
-    command: psql postgresql://postgres:postgres@localhost
+    command: |
+      docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data -d postgres
+      psql postgresql://postgres:postgres@localhost
 
 
 ports:
