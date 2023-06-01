@@ -8,7 +8,7 @@ tasks:
     command: docker-compose up
 
   - name: Postgres
-      command: docker run --network=yb-docker-composer_default --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data -d postgres
+    command: docker run --network=yb-docker-composer_default --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data -d postgres
 
 
 ports:
