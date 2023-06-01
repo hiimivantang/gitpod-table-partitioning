@@ -35,3 +35,10 @@ ports:
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
+      
+jetbrains:
+  intellij:
+    plugins:
+      - com.haulmont.jpab
+    prebuilds:
+      version: both
