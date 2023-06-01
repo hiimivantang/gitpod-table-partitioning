@@ -1,0 +1,33 @@
+tasks:
+  - name: YugabyteDB cluster
+    before: |
+      git clone https://github.com/hiimivantang/yb-docker-composer && 
+      cd  yb-docker-composer && 
+      python yb-docker-composer.py
+    init: docker-compose pull
+    command: docker-compose up
+
+  - name: Postgres
+      command: docker run --network=yb-docker-composer_default --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data -d postgres
+
+
+ports:
+  - port: 7001
+    onOpen: open-browser
+    description: "UI for yb-master-n1"
+  - port: 7002
+    onOpen: ignore
+    description: "UI for yb-master-n2"
+  - port: 7003
+    onOpen: ignore
+    description: "UI for yb-master-n3"
+  - port: 9090
+    onOpen: ignore
+    description: "Prometheus"
+  - port: 3000
+    onOpen: open-browser
+    description: "Grafana dashboard"
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker
