@@ -6,14 +6,21 @@ tasks:
       git clone https://github.com/hiimivantang/yb-docker-composer 
       cd yb-docker-composer 
       python yb-docker-composer.py
-    init: docker-compose pull
+      docker-compose pull
     command: |
-      docker-compose up
+      docker-compose up -d
+      gp ports await 5433
+      sleep 5
+      ysqlsh
+      
 
   - name: postgres
     before: brew install libpq && brew link --force libpq
     command: |
       docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -v ~/postgresql_data/:/var/lib/postgresql/data postgres
+      gp ports await 5432
+      sleep 5
+      psql postgresql://postgres:postgres@localhost
 
 ports:
   - port: 7001
