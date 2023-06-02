@@ -5,7 +5,8 @@ tasks:
     before: |
       git clone https://github.com/hiimivantang/yb-docker-composer 
       cd yb-docker-composer 
-      python yb-docker-composer.py
+      pip install jinja2
+      python yb-docker-composer.py --prometheus
       docker-compose pull
     command: |
       docker-compose up -d
