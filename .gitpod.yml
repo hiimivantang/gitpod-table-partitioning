@@ -1,4 +1,4 @@
-image: hiimivantang/workspace-yugabytedb
+image: gitpod/workspace-yugabytedb
 
 tasks:
   - name: ybdb
