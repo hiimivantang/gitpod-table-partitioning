@@ -12,6 +12,7 @@ tasks:
       docker-compose up -d
       gp ports await 5433
       sleep 15
+      cd ..
       ysqlsh
       
 
